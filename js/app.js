@@ -57,10 +57,10 @@ restart.addEventListener('click', function () {
  */
 
 // card match - card open show
-const clicks = document.querySelectorAll('li');
-for (let click of clicks) {
-    click.addEventListener('click', function () {
-            alert(document.querySelector('i').className);
-        }
-    );
-}
+$(document).ready(function () {
+    $(".card").each(function () {
+        $(this).click(function () {
+            $(this).addClass("card open show"); // When click li element class will change to card open show
+        });
+    });
+});
