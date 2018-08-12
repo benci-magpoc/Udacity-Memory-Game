@@ -39,6 +39,11 @@ for (let i = 0; i < cardList.length; i++) {
     list.appendChild(cardList[i]);
 }
 
+const restart = document.querySelector('.restart');
+restart.addEventListener('click', function(){
+    window.location.reload();
+})
+
 /*
  * set up the event listener for a card. If a card is clicked:
  *  - display the card's symbol (put this functionality in another function that you call from this one)
