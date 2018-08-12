@@ -58,9 +58,13 @@ restart.addEventListener('click', function () {
 
 // card match - card open show
 $(document).ready(function () {
-    $(".card").each(function () {
-        $(this).click(function () {
-            $(this).addClass("card open show"); // When click li element class will change to card open show
-        });
+    $('.card').click(function () {
+
+        let ele = $(this);
+        $(this).addClass("open show");
+        setTimeout(function () {
+            ele.removeClass("open show");
+        }, 2000);
     });
+
 });
