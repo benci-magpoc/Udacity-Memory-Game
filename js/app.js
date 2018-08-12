@@ -35,12 +35,12 @@ removeElements(document.querySelectorAll(".card"));
 
 
 const list = document.querySelector('.deck');
-for (let i = 0; i < cardList.length; i++) {
-    list.appendChild(cardList[i]);
+for (const cardLists of cardList) {
+    list.appendChild(cardLists);
 }
 
 const restart = document.querySelector('.restart');
-restart.addEventListener('click', function(){
+restart.addEventListener('click', function () {
     window.location.reload();
 })
 
