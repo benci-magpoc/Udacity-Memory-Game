@@ -2,7 +2,8 @@
  * Create a list that holds all of your cards
  */
 let cardList = Array.from(document.getElementsByClassName('card'));
-console.log(cardList);
+let stars = 3;
+
 
 /*
  * Display the cards on the page
@@ -54,3 +55,12 @@ restart.addEventListener('click', function () {
  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
+
+// card match - card open show
+const clicks = document.querySelectorAll('li');
+for (let click of clicks) {
+    click.addEventListener('click', function () {
+            alert(document.querySelector('i').className);
+        }
+    );
+}
