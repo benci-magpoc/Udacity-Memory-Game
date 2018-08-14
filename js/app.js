@@ -57,14 +57,62 @@ restart.addEventListener('click', function () {
  */
 
 // card match - card open show
+// $(document).ready(function () {
+//     $('.card').click(function () {
+//         // Card Open
+//         $(this).addClass("open show");
+
+//         // Save First Click i element className
+//         let firstclick = ($(this).children('.fa'));
+//         console.log(firstclick);
+//         // Save Second Click i element className
+//         let secondclick = ($(this).children('.fa'));
+//         console.log(secondclick);
+
+//         // compare first click element and second element to match card
+//         if (firstclick === secondclick) {
+//             // if match each other change card class to "card match"
+//             $(this).removeClass("open show");
+//             $(this).addClass("match")
+//         } else {
+//             // if not match each other close card after 2 seconds.
+//             let ele = $(this);
+//             setTimeout(function () {
+//                 ele.removeClass("open show");
+//             }, 2000);
+//         }
+//     })
+// });
+
+
+
 $(document).ready(function () {
+    var sequenceController = 1,
+        firstclick, secondclick;
     $('.card').click(function () {
-
-        let ele = $(this);
+        // Card Open
         $(this).addClass("open show");
-        setTimeout(function () {
-            ele.removeClass("open show");
-        }, 2000);
-    });
-
+        switch (sequenceController) {
+            case 1:
+                firstclick = ($(this).children('.fa').attr('class'));
+                sequenceController++;
+                break;
+            case 2:
+                secondclick = ($(this).children('.fa').attr('class'));
+                sequenceController--;
+                if (firstclick == secondclick) {
+                    $('.open.show').removeClass("open show").addClass("match");
+                    console.log('matched');
+                } else {
+                    firstclick = '1';
+                    secondclick = '2';
+                    console.log('not matched');
+                    let ele = $('.card');
+                    setTimeout(function () {
+                        ele.removeClass("open show");
+                    }, 1500);
+                }
+                break;
+        }
+    })
 });
