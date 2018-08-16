@@ -2,9 +2,6 @@
  * Create a list that holds all of your cards
  */
 let cardList = Array.from(document.getElementsByClassName('card'));
-let stars = 3;
-
-
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
@@ -29,7 +26,6 @@ function shuffle(array) {
 }
 
 cardList = shuffle(cardList);
-console.log(cardList);
 
 const removeElements = (elms) => [...elms].forEach(el => el.remove());
 removeElements(document.querySelectorAll(".card"));
@@ -84,35 +80,59 @@ restart.addEventListener('click', function () {
 //     })
 // });
 
+function initStars() {
+    for (let i = 0; i < 5; i++) {
+        $(".stars").append(`<li><i class="fa fa-star"></i></li>`);
+    }
+}
 
+// reduce star rating
+function reduceStar() {
+    let stars = $(".fa-star");
+    $(stars[stars.length - 1]).toggleClass("fa-star fa-star-o");
+}
+
+// Create initial Stars
+initStars();
+
+let movesCount = -1;
+
+function moves() {
+    movesCount += 1;
+    $('.moves').html(movesCount);
+    if (movesCount === 14 || movesCount === 20 || movesCount === 25 || movesCount === 30 || movesCount === 34) {
+        reduceStar();
+    }
+    if (movesCount === 34) {
+        alert('fail');
+        window.location.reload();
+    }
+}
 
 $(document).ready(function () {
-    var sequenceController = 1,
-        firstclick, secondclick;
+    let clickhold = [];
     $('.card').click(function () {
+        // Call moves Function to count move and stars.
+        moves();
+        // Push the card to compare each other
+        clickhold.push($(this).children('.fa').attr('class'));
+        console.log(clickhold);
+
         // Card Open
         $(this).addClass("open show");
-        switch (sequenceController) {
-            case 1:
-                firstclick = ($(this).children('.fa').attr('class'));
-                sequenceController++;
-                break;
-            case 2:
-                secondclick = ($(this).children('.fa').attr('class'));
-                sequenceController--;
-                if (firstclick == secondclick) {
-                    $('.open.show').removeClass("open show").addClass("match");
-                    console.log('matched');
-                } else {
-                    firstclick = '1';
-                    secondclick = '2';
-                    console.log('not matched');
-                    let ele = $('.card');
-                    setTimeout(function () {
-                        ele.removeClass("open show");
-                    }, 1500);
-                }
-                break;
+        if (clickhold.length == 2) {
+            if (clickhold[0] === clickhold[1]) {
+                $('.open.show').removeClass("open show").addClass("match");
+                console.log('matched');
+                clickhold = [];
+            } else {
+                console.log('not matched');
+                clickhold = [];
+                let ele = $('.card');
+                setTimeout(function () {
+                    ele.removeClass("open show");
+                }, 2000);
+            }
         }
     })
 });
