@@ -113,7 +113,7 @@ $(document).ready(function () {
     let clickhold = [];
     $('.card').click(function () {
         // Call moves Function to count move and stars.
-        moves();
+        
         // Push the card to compare each other
         clickhold.push($(this).children('.fa').attr('class'));
         console.log(clickhold);
@@ -121,6 +121,7 @@ $(document).ready(function () {
         // Card Open
         $(this).addClass("open show");
         if (clickhold.length == 2) {
+            moves();
             if (clickhold[0] === clickhold[1]) {
                 $('.open.show').removeClass("open show").addClass("match");
                 console.log('matched');
