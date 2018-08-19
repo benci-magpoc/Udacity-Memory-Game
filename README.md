@@ -1,4 +1,4 @@
-# Udacity-Memory-Game ![](https://img.shields.io/badge/Code%20Statue-Open-brightgreen.svg)
+# Udacity-Memory-Game ![](https://img.shields.io/badge/Code%20Statue-Close-red.svg)
 This repository is the code for the "Memory Game" project from Udacity.
 
 # Demo
